@@ -1245,6 +1245,28 @@ res.json(loghandler.invalidKey)
 }
 })
 
+router.get('/random/katailaham', async (req, res, next) => {
+        var Apikey = req.query.apikey
+            
+	if(!Apikey) return res.json(loghandler.notparam)
+	if(listkey.includes(Apikey)){
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/AREXANS/result-daniapi/main/katailham.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+
 router.get('/random/asmaulhusna', async (req, res, next) => {
         var Apikey = req.query.apikey
             
